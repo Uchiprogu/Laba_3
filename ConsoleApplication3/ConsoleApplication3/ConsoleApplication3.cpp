@@ -3,6 +3,11 @@
 
 #include "pch.h"
 
+// ConsoleApplication1.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
+//
+
+
+
 #include <iostream>
 #include <vector>
 #include <cctype> //tolower
@@ -17,6 +22,7 @@ void updateKey(string& str);
 void fillingKey(string& key, vector<string>& TablStr);
 void print(const string& str);
 void printInput(vector<string>& Text);
+void printInputM(vector<string>& Text);
 void encode(vector<string>& Text, const vector<string> key, const vector<string> key_2);
 void dencode(vector<string>& Text, const vector<string> key, const vector<string> key_2);
 string fillLetters(string key, string& tmp);
@@ -45,6 +51,8 @@ int main()
 	vector<string> Text;
 	vector<string> KeyTable;
 	vector<string> KeyTable_2;
+	cout << endl;
+
 
 	Text = input(str);
 
@@ -55,8 +63,12 @@ int main()
 	cout << endl;
 	printInput(KeyTable_2);*/
 
-	printInput(KeyTable);
-	printInput(Text);
+	cout << "-------KeyTable------" << endl;
+	printInputM(KeyTable);
+	cout << endl;
+	cout << "-------KeyTable_2------" << endl;
+	printInputM(KeyTable_2);
+
 	cout << endl;
 	encode(Text, KeyTable, KeyTable_2);
 	cout << endl;
@@ -171,7 +183,7 @@ void encode(vector<string>& Text, const vector<string> key, const vector<string>
 							{
 								//on one column
 							case 0:
-								if (k != 4 && line != 4)
+								if (k != 5 && line != 5)
 								{
 									cout << Text.at(i)[0];
 									cout << Text.at(i)[1];
@@ -334,7 +346,7 @@ void dencode(vector<string>& Text, const vector<string> key, const vector<string
 									cout << Text.at(i)[1];
 									cout << "	";
 									Text.at(i)[1] = key_2.at(k - 1)[y];
-									Text.at(i)[0] = key.at(4)[column];
+									Text.at(i)[0] = key.at(5)[column];
 									cout << Text.at(i)[0];
 									cout << Text.at(i)[1];
 									cout << endl;
@@ -344,7 +356,7 @@ void dencode(vector<string>& Text, const vector<string> key, const vector<string
 									cout << Text.at(i)[0];
 									cout << Text.at(i)[1];
 									cout << "	";
-									Text.at(i)[1] = key_2.at(4)[y];
+									Text.at(i)[1] = key_2.at(5)[y];
 									Text.at(i)[0] = key.at(line - 1)[column];
 									cout << Text.at(i)[0];
 									cout << Text.at(i)[1];
@@ -441,7 +453,7 @@ string fillLetters(string key, string& tmp)
 			{
 				duplicateCharacter = 1;
 			}
-			if(key[j] == 32)
+			if (key[j] == 32)
 				spaceCharacter = 1;
 			if (key[j] == 46)
 				pointCharacter = 1;
@@ -477,7 +489,7 @@ string fillLetters(string key, string& tmp)
 	//print(key);
 	//print(tmp_2);
 	tmp_2 = tmp + tmp_2;
-	
+
 	return tmp_2;
 }
 void updateKey(string& str)
@@ -504,7 +516,7 @@ void fillingKey(string& key, vector<string>& TablStr)
 	tmp = fillLetters(key, tmp);
 	int tmpSize = 0;
 	bool stop = 0;
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < 6; i++)
 	{
 
 		for (int j = 0; j < 5; j++, SizeKey--)
@@ -517,4 +529,13 @@ void fillingKey(string& key, vector<string>& TablStr)
 		tmp_2.clear();
 	}
 
+}
+void printInputM(vector<string>& Text)
+{
+	for (int i = 0; i < Text.size(); i++)
+	{
+		for (int j = 0; j < Text.at(i).size(); j++)
+			cout << Text.at(i)[j];
+		cout << endl;
+	}
 }
